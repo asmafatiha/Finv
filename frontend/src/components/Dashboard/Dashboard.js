@@ -9,7 +9,7 @@ const Dashboard = () => {
 
   useEffect(() => {
     console.log('Checking session...');
-    axios.get('http://localhost:5000/api/session', { withCredentials: true })
+    axios.get('https://finv.onrender.com/api/session', { withCredentials: true })
       .then((response) => {
         console.log('Session data:', response.data);
         setCurrentUser(response.data);
@@ -21,7 +21,7 @@ const Dashboard = () => {
   }, [navigate]);
 
   const handleLogout = () => {
-    axios.post('http://localhost:5000/api/logout', {}, { withCredentials: true })
+    axios.post('https://finv.onrender.com/api/logout', {}, { withCredentials: true })
       .then(() => {
         navigate('/login');  // Rediriger vers la page de login après la déconnexion
       })

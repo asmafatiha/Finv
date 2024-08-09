@@ -12,7 +12,7 @@ const app = express();
 app.use(express.json());
 app.use(cors({
   credentials: true,
-  origin: 'http://riankristoffersen.com' // Replace with your frontend URL'http://localhost:3000' 
+  origin: ['http://localhost:3000','http://riankristoffersen.com'] //  'http://riankristoffersen.com' // Replace with your frontend URL'http://localhost:3000' 
 }));
 
 app.use(session({

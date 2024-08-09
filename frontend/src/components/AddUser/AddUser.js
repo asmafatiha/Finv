@@ -25,7 +25,7 @@ const AddUser = () => {
 
   useEffect(() => {
     console.log('Checking session...');
-    axios.get('http://localhost:5000/api/session', { withCredentials: true })
+    axios.get('https://finv.onrender.com/api/session', { withCredentials: true })
       .then(res => {
         console.log('Session active:', res.data);
         setCurrentUser(res.data);
@@ -57,7 +57,7 @@ const AddUser = () => {
     console.log('User data:', user);
 
     try {
-      const res = await axios.post('http://localhost:5000/api/adduser', {
+      const res = await axios.post('https://finv.onrender.com/api/adduser', {
         newUser: user,
       }, {
         withCredentials: true,  // Include this option to send session cookies

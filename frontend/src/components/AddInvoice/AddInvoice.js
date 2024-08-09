@@ -19,16 +19,16 @@ const AddInvoice = () => {
   useEffect(() => {
     const fetchInitialData = async () => {
       try {
-        const sessionRes = await axios.get('http://localhost:5000/api/session', { withCredentials: true });
+        const sessionRes = await axios.get('https://finv.onrender.com/api/session', { withCredentials: true });
         setCurrentUser(sessionRes.data);
 
-        const clientsRes = await axios.get('http://localhost:5000/api/clients', { withCredentials: true });
+        const clientsRes = await axios.get('https://finv.onrender.com/api/clients', { withCredentials: true });
         setClients(clientsRes.data);
 
-        const itemsRes = await axios.get('http://localhost:5000/api/items', { withCredentials: true });
+        const itemsRes = await axios.get('https://finv.onrender.com/api/items', { withCredentials: true });
         setItems(itemsRes.data);
 
-        const nextInvoiceRes = await axios.get('http://localhost:5000/api/nextinvoicenumber', { withCredentials: true });
+        const nextInvoiceRes = await axios.get('https://finv.onrender.com/api/nextinvoicenumber', { withCredentials: true });
         setInvoice(prevInvoice => ({ ...prevInvoice, invoice_number: nextInvoiceRes.data.nextInvoiceNumber }));
       } catch (err) {
         console.error('Error fetching initial data:', err.response ? err.response.data : err.message);
@@ -54,7 +54,7 @@ const AddInvoice = () => {
 
       if (field === 'item_id') {
         try {
-          const res = await axios.get(`http://localhost:5000/api/itemprice/${value}`, { withCredentials: true });
+          const res = await axios.get(`https://finv.onrender.com/api/itemprice/${value}`, { withCredentials: true });
           const price = res.data.price;
           setInvoice(prevInvoice => {
             const updatedLines = prevInvoice.lines.map((line, i) =>
@@ -90,14 +90,14 @@ const AddInvoice = () => {
 
     try {
       // Add the invoice
-      const response = await axios.post('http://localhost:5000/api/addinvoice', { newInvoice: { ...invoice, created_by: currentUser.user_id } }, { withCredentials: true });
+      const response = await axios.post('https://finv.onrender.com/api/addinvoice', { newInvoice: { ...invoice, created_by: currentUser.user_id } }, { withCredentials: true });
       setMessage('Invoice added successfully');
 
       // Get the invoice ID from the response
       const invoiceId = response.data.invoiceId;
 
       // Fetch the PDF for the added invoice
-      const pdfResponse = await axios.get(`http://localhost:5000/api/invoicepdf/${invoiceId}`, { responseType: 'blob', withCredentials: true });
+      const pdfResponse = await axios.get(`https://finv.onrender.com/api/invoicepdf/${invoiceId}`, { responseType: 'blob', withCredentials: true });
 
       // Create a URL for the PDF blob
       const url = window.URL.createObjectURL(new Blob([pdfResponse.data], { type: 'application/pdf' }));
@@ -109,7 +109,7 @@ const AddInvoice = () => {
       document.body.removeChild(link);
 
       // Reset the form and fetch the new invoice number
-      const nextInvoiceRes = await axios.get('http://localhost:5000/api/nextinvoicenumber', { withCredentials: true });
+      const nextInvoiceRes = await axios.get('https://finv.onrender.com/api/nextinvoicenumber', { withCredentials: true });
       setInvoice({
         invoice_number: nextInvoiceRes.data.nextInvoiceNumber,
         client_id: '',

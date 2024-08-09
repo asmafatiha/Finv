@@ -23,7 +23,7 @@ const AddClient = () => {
   useEffect(() => {
     // Vérifier la session pour obtenir les informations de l'utilisateur courant
     console.log('Checking session...');
-    axios.get('http://localhost:5000/api/session', { withCredentials: true })
+    axios.get('https://finv.onrender.com/api/session', { withCredentials: true })
       .then(res => {
         console.log('Session active:', res.data);
         setCurrentUser(res.data);
@@ -55,7 +55,7 @@ const AddClient = () => {
     try {
         const id = currentUser.user_id;
         console.log("id est: " + id);
-      await axios.post('http://localhost:5000/api/addclient',
+      await axios.post('https://finv.onrender.com/api/addclient',
         { newClient: { ...client, created_by: id } },  // Assurez-vous que `user_id` est dans `currentUser`
         {
           withCredentials: true,  // Inclure les cookies pour la session

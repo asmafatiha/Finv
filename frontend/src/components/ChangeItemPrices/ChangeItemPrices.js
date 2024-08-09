@@ -17,10 +17,10 @@ const ChangeItemPrices = () => {
   useEffect(() => {
     const fetchInitialData = async () => {
       try {
-        const sessionRes = await axios.get('http://localhost:5000/api/session', { withCredentials: true });
+        const sessionRes = await axios.get('https://finv.onrender.com/api/session', { withCredentials: true });
         setCurrentUser(sessionRes.data);
 
-        const itemsRes = await axios.get('http://localhost:5000/api/items', { withCredentials: true });
+        const itemsRes = await axios.get('https://finv.onrender.com/api/items', { withCredentials: true });
         setItems(itemsRes.data);
       } catch (err) {
         console.error('Error fetching initial data:', err.response ? err.response.data : err.message);
@@ -67,7 +67,7 @@ const ChangeItemPrices = () => {
     };
 
     try {
-      await axios.post('http://localhost:5000/api/changeItemPrices', data, { withCredentials: true });
+      await axios.post('https://finv.onrender.com/api/changeItemPrices', data, { withCredentials: true });
       setMessage('Prices updated successfully');
       // Reset the form
       setSelectedItem('');

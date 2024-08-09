@@ -17,7 +17,7 @@ const AddItem = () => {
   const [currentUser, setCurrentUser] = useState(null);
 
   useEffect(() => {
-    axios.get('http://localhost:5000/api/session', { withCredentials: true })
+    axios.get('https://finv.onrender.com/api/session', { withCredentials: true })
       .then(res => {
         setCurrentUser(res.data);
       })
@@ -45,7 +45,7 @@ const AddItem = () => {
     }
 
     try {
-      await axios.post('http://localhost:5000/api/additem',
+      await axios.post('https://finv.onrender.com/api/additem',
         { newItem: { ...item, created_by: currentUser.user_id } },
         {
           withCredentials: true,  // Inclure les cookies pour la session

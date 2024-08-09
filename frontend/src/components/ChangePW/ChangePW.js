@@ -20,7 +20,7 @@ const ChangePW = () => {
     }
 
     try {
-      const response = await axios.post('http://localhost:5000/api/changepassword', {
+      const response = await axios.post('https://finv.onrender.com/api/changepassword', {
         currentPassword,
         newPassword,
       }, { withCredentials: true });
