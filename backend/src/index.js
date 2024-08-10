@@ -3,7 +3,7 @@ const mysql = require('mysql');
 const cors = require('cors');
 const session = require('express-session');
 const pdf = require('html-pdf');
-const bcrypt = require('bcrypt');  // Import bcrypt
+const bcrypt = require('bcryptjs');  // Import bcrypt
 require('dotenv').config();
 
 const generateInvoiceTemplate = require('./invoiceTemplate');
